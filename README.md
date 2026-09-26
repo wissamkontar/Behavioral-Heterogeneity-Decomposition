@@ -13,14 +13,7 @@ same context in individually different ways. A single *global* model fitted to t
 population averages those differences away; a separate model per agent throws away
 what they share. This repository implements a middle path: every trajectory is
 decomposed into a **common component** shared by the population and a
-**personalized component** that belongs to one agent,
-
-$$
-x_v \;\approx\; \underbrace{C\,\Psi_v}_{\text{common}} \;+\; \underbrace{P_v\,\Phi_v}_{\text{personalized}} ,
-$$
-
-estimated with the orthogonally constrained two-stage procedure of Algorithm 1 in
-the paper: one PCA across agents yields the common temporal basis $C$ and weights
+**personalized component** that belongs to one agent, estimated with the orthogonally constrained two-stage procedure of Algorithm 1 in the paper: one PCA across agents yields the common temporal basis $C$ and weights
 $\Psi_v = C^\top D_v$; a second PCA on each agent's residual $R_v = (I - CC^\top)D_v$
 yields its personalized basis $P_v$ and weights $\Phi_v$, so the personalized
 component is orthogonal to the common subspace by construction. The personalized components
@@ -111,26 +104,6 @@ reproducibility notes below for the two things that matter.
 | 08 | `ngsim_unified_clustering` | §4.2.3 · Fig. 14a | NGSIM 101 | Joint clustering on the concatenated acceleration + spacing + speed personalized components. | `NGSIM_cluster` |
 | 09 | `tgsim_hdv_av_clustering` | §4.2.3 · Fig. 15a, Fig. 15b | TGSIM I-395 | Large-scale clustering: speed-profile decomposition for 494 HDVs and 2 AVs on I-395, k-means (k=4) manifold showing both AVs fall in the same cluster. Part B repeats the pipeline for pedestrians (k=3) on synthetic speed profiles generated in the notebook. | `TGSIM_cluster`, `TGSIM_pedestrians` |
 | 10 | `behavioral_transfer` | §4.2.2 · Fig. 12, Fig. 13 | TGSIM-derived | Behavioral transfer (Eq. 7): inject a target HDV's personalized component $P^{(\mathrm{HDV})}\Phi^{(\mathrm{HDV})}$ into a baseline AV trajectory, with a tunable strength and time shift; then four target styles (timid, aggressive, smooth, defensive). | `personalization`, `multiple_personalization` |
-
----
-
-## The method in 15 lines
-
-```python
-from bhd import two_shot_decomposition, stack_trajectories, load_ngsim_stop_to_go, DATA_DIR
-
-df = load_ngsim_stop_to_go(DATA_DIR / "ngsim" / "stop_to_go.csv")
-X, ids = stack_trajectories(df, id_col="trajectory_id", value_col="follower_acc")  # (T, N)
-
-out = two_shot_decomposition(X, n_common=1, n_personal=1)
-out["shared"]        # C Ψ      — what every driver does in this context
-out["personal"]      # P_v Φ_v  — what makes driver v different
-out["reconstructed"] # shared + personal
-```
-
-`stack_trajectories` performs the *context alignment* step (linear resampling of
-every trajectory to a common normalized-time grid) so that agents of different
-duration can be stacked column-wise.
 
 ---
 
