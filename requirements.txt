@@ -1,0 +1,14 @@
+# Core scientific stack (tested with the pinned-or-newer versions below)
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+scikit-learn>=1.4
+matplotlib>=3.8
+seaborn>=0.13
+openpyxl>=3.1          # reads data/synthetic/behavioral_transfer_data.xlsx
+
+# Notebook execution (needed for scripts/run_all.py and JupyterLab)
+jupyterlab>=4.0
+nbformat>=5.9
+nbclient>=0.9
+ipykernel>=6.25

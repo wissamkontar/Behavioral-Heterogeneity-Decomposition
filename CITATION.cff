@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper below."
+title: "Behavioral Heterogeneity Decomposition"
+authors:
+  - family-names: Kontar
+    given-names: Wissam
+    affiliation: University of Nebraska-Lincoln
+  - family-names: Kim
+    given-names: Yongju
+    affiliation: University of Wisconsin-Madison
+  - family-names: Zhong
+    given-names: Xinzhi
+    affiliation: University of Wisconsin-Madison
+  - family-names: Ahn
+    given-names: Soyoung
+    affiliation: University of Wisconsin-Madison
+repository-code: "https://github.com/wissamkontar/Behavioral-Heterogeneity-Decomposition"
+license: MIT
+preferred-citation:
+  type: article
+  title: "Capturing behavioral heterogeneity for traffic flow: A scalable and personalized decomposition approach"
+  authors:
+    - family-names: Kontar
+      given-names: Wissam
+    - family-names: Kim
+      given-names: Yongju
+    - family-names: Zhong
+      given-names: Xinzhi
+    - family-names: Ahn
+      given-names: Soyoung
+  journal: "Transportation Research Part B: Methodological"
+  volume: 209
+  start: 103467
+  year: 2026
+  doi: 10.1016/j.trb.2026.103467

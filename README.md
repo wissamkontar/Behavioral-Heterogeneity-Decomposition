@@ -13,7 +13,14 @@ same context in individually different ways. A single *global* model fitted to t
 population averages those differences away; a separate model per agent throws away
 what they share. This repository implements a middle path: every trajectory is
 decomposed into a **common component** shared by the population and a
-**personalized component** that belongs to one agent, estimated with the orthogonally constrained two-stage procedure of Algorithm 1 in the paper: one PCA across agents yields the common temporal basis $C$ and weights
+**personalized component** that belongs to one agent,
+
+$$
+x_v \;\approx\; \underbrace{C\,\Psi_v}_{\text{common}} \;+\; \underbrace{P_v\,\Phi_v}_{\text{personalized}} ,
+$$
+
+estimated with the orthogonally constrained two-stage procedure of Algorithm 1 in
+the paper: one PCA across agents yields the common temporal basis $C$ and weights
 $\Psi_v = C^\top D_v$; a second PCA on each agent's residual $R_v = (I - CC^\top)D_v$
 yields its personalized basis $P_v$ and weights $\Phi_v$, so the personalized
 component is orthogonal to the common subspace by construction. The personalized components

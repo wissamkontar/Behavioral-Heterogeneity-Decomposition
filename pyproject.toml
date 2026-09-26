@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bhd"
+version = "1.0.0"
+description = "Behavioral Heterogeneity Decomposition: common/personalized decomposition of agent trajectories"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "Wissam Kontar", email = "wkontar2@unl.edu" }]
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+    "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+notebooks = ["jupyterlab>=4.0", "nbformat>=5.9", "nbclient>=0.9", "ipykernel>=6.25"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
